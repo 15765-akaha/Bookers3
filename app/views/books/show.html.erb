@@ -11,6 +11,16 @@
 		<%= link_to @book.user.name, user_path(@book.user.id) %></td>
 		<td><%= @book.title %></td>
 		<td><%= @book.body %></td>
+		<% if @book.favorited_by?(current_user) %>
+		<td><%= link_to book_favorites_path(@book), method: :delete do %><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+			<%= @book.favorites.count %> いいね
+			<% end %></td>
+		<% else %>
+		<td><%= link_to book_favorites_path(@book), method: :post do %>
+			<i class="fas fa-heart-o" aria-hidden="true"></i>
+			<%= @book.favorites.count %> いいね
+			<% end %>
+		<% end %>
 		<% if @user.id == current_user.id %>
 		<td><%= link_to 'Edit', edit_book_path(@book),
 			class: "btn btn-success" %></td>
