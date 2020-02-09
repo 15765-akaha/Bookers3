@@ -23,6 +23,9 @@
 			<% end %>
 		<% end %>
 		<!-- いいね機能 -->
+
+		<!-- コメント件数 -->
+		<td>コメント数: <%= @book.book_comments.count %></td>
 		<% if @user.id == current_user.id %>
 		<td><%= link_to 'Edit', edit_book_path(@book),
 			class: "btn btn-success" %></td>
@@ -31,5 +34,23 @@
 		<% end %>
 	 </tr>
 	</table>
+	<div class="row">
+	<% @book.book_comments.each do |book_comment| %>
+	<%= attachment_image_tag book_comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", :size => "40x40" %>
+	<%= book_comment.user.name %>
+	<%= book_comment.created_at.strftime('%Y/%m/%d') %>
+	<%= book_comment.comment %>
+    </div>
+    <% end %>
+
+    <%= form_for [@book, @book_comment] do |f| %>
+    <div class="row">
+      <div class="col-xs-12">
+      	<%= f.text_area :comment, rows:'5', class:"form-control" %>
+      </div>
+    </div>
+    	<%= f.submit :"コメントする" %>
+    <% end %>
+
   </div>
 </div>

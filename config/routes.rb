@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get "home/about" => "about#index"
   root 'home#index'
   resources :books do
-  resource :favorites, only: [:create, :destroy]
-  resource :book_comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+    resource :book_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update, :index]
 end
