@@ -19,6 +19,8 @@
         <td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" , :size => "40x40"%>
         <td><%= link_to book.title, book %></td>
         <td><%= book.body %></td>
+        <td><i class="fa fa-thumbs-up" aria-hidden="true"></i><%= book.favorites.count %>いいね</td>
+        <td>コメント数 :<%= book.book_comments.count %></td>
   	 </tr>
     <% end %>
     </tbody>
