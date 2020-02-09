@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :books do
     resource :favorites, only: [:create, :destroy]
-    resource :book_comments, only: [:create, :destroy]
+    resources :book_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update, :index]
 end
