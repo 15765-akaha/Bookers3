@@ -7,9 +7,10 @@ class BookCommentsController < ApplicationController
   	@comment.user_id = current_user.id
   	@comment.book_id = @book.id
   	if @comment.save
-  	   redirect_back(fallback_location: root_path)
+  	   redirect_to book_path(@book)
     else
-       redirect_to book_path(@book)
+       flash[:danger] = 'コメントの投稿に失敗しました'
+       redirect_back(fallback_location: root_path)
     end
   end
 
