@@ -48,9 +48,17 @@
    </ul>
    </div>
   </nav>
+
+
    </header><!-- /header -->
   <div class="body">
    <div class="container">
+
+      <!-- 検索フォーム -->
+    <%= form_tag(books_path, :method => 'get') do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag 'Seach', :name => nil %>
+  <% end %>
 
         <% if flash[:notice] %>
         <div class="alert alert-success">
