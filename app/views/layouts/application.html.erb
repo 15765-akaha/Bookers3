@@ -55,7 +55,7 @@
    <div class="container">
 
       <!-- 検索フォーム -->
-    <%= form_tag(books_path, :method => 'get') do %>
+    <%= form_tag(searches_path, :method => 'get') do %>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag 'Seach', :name => nil %>
   <% end %>
