@@ -63,7 +63,9 @@
 
       <!-- 検索対象プルダウン -->
     <%= select_tag :list, options_for_select([['User','User'],['Book','Book']]) %>
-    <%= submit_tag 'Seach', :name => nil %>
+      <!--検索条件プルダウン  -->
+    <%= select_tag :search_method, options_for_select([["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+    <%= submit_tag 'Search', :name => nil %>
   <% end %>
    </div>
   </div>
