@@ -1,0 +1,11 @@
+<div class="form-group">
+  <%= form_with model: [book, book_comment] do |f| %>
+
+    <%= f.text_area :comment, rows:'5', class:"form-control" %>
+      <div class="row">
+      <div class="col-xs-1 col-xs-offset-9">
+    <%= f.submit :"コメントする" %>
+      </div>
+      </div>
+  <% end %>
+</div>

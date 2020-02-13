@@ -18,7 +18,6 @@ class BookCommentsController < ApplicationController
     comment = BookComment.find_by(id: params[:id],book_id: params[:book_id])
     comment.destroy
     redirect_to book_path(params[:book_id])
-    # インスタンス変数だと通らなかった。
   end
 
   private
