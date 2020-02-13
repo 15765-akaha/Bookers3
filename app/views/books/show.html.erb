@@ -7,7 +7,7 @@
 	<h2>Book detail</h2>
 		<table class= "table table-striped">
 		 <tr>
-			<td><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", :size => "40x40"%><br>
+			<td><%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", :size => "40x40"%><br>
 			<%= link_to @book.user.name, user_path(@book.user.id) %></td>
 			<td><%= @book.title %></td>
 			<td><%= @book.body %></td>
@@ -28,33 +28,21 @@
 	     </tr>
 		</table>
 		<!-- コメント一覧 -->
-	 <% @book.book_comments.each do |comment| %>
-  <div class="row">
-	<div class="col-xs-2 col-xs-offset-1">
-	 <%= attachment_image_tag comment.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", :size => "40x40" %>
-	 <%= comment.user.name %>
-	 <%= comment.created_at.strftime('%Y/%m/%d') %>
-    </div>
-    <div class="col-xs-8">
-  	<div class="panel-body well">
-	 <%= comment.comment %><br>
-
-	 <% if comment.user == current_user %>
-	 <%= link_to 'コメントを削除する', book_book_comment_path(comment.book.id, comment.id), method: :delete, data:{ confirm: "本当に削除しますか？" }, class: "small" %>
-	 <% end %>
-    </div>
-    </div>
-  </div>
-    <% end %>
-
-    　<!-- コメント投稿フォーム -->
+		 <div id="comments_index">
+	     <%= render partial: 'books/comments', locals:{book: @book } %>
+	     </div>
        <div class="col-xs-8 col-xs-offset-3">
          <% if flash[:danger] %>
    		 <div class="alert alert-danger">
    		 	<%= flash[:danger] %>
    		 </div>
          <% end %>
-         <%= render partial: 'books/comment', locals:{book: @book, book_comment: @book_comment} %>
+
+    　   <!-- コメント投稿フォーム -->
+    	 <div id="comments_form">
+         <%= render partial: 'books/comment_form', locals:{book: @book, book_comment: @book_comment} %>
+     	 </div>
+
        </div>
 
   </div>
